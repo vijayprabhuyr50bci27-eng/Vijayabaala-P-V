@@ -1,0 +1,37 @@
+#include <stdio.h>
+int reverse(int num)
+ {
+    int rev = 0;
+    while (num != 0) 
+    {
+        rev = rev * 10 + num % 10;
+        num /= 10;
+    }
+    return rev;
+}
+int is_palindrome(int num) 
+{
+    return num == reverse(num);
+}
+int main()
+ {
+    int num, steps = 0; 
+    printf("Enter a 2-digit or 3-digit number: ");
+    scanf("%d", &num);
+    while (steps < 5)
+ {
+        int rev = reverse(num);
+        int sum = num + rev;
+        printf("Step %d: %d + %d = %d\n", steps + 1, num, rev, sum);
+     
+        if (is_palindrome(sum)) 
+        {
+            printf("Palindrome found: %d\n", sum);
+            return 0;
+        }
+        num = sum;
+        steps++;
+    }
+    printf("Palindrome not obtained in 5 steps.\n");
+    return 0;
+}
