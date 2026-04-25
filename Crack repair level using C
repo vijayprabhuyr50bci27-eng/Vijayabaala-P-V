@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{
+    float cr;
+    printf("Enter the crack width in mm\n");
+    scanf("%f",&cr);
+    if(cr>1.0)
+    {
+        printf("Major repair required\n");
+    }
+    else if(cr>=0.3 && cr<=1.0)
+    {
+        printf("Minor repair needed\n");
+    }
+    else if(cr<0.3)
+    {
+        printf("Safe\n");
+    }
+    else
+    {
+        printf("Invalid Input\n");
+    }
+    return 0;
+}
