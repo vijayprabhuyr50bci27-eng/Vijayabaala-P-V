@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <string.h>
+
+/**
+ * Counts and prints the frequency of each digit (0-9) in the input string.
+ */int main() {
+    char s[1001];
+    int freq[10] = {0};
+
+    if (scanf("%s", s) == 1) {
+        for (int i = 0; s[i] != '\0'; i++) {
+            if (s[i] >= '0' && s[i] <= '9') {
+                freq[s[i] - '0']++;
+            }        }
+
+        for (int i = 0; i < 10; i++) {
+            printf("%d%c", freq[i], (i == 9 ? '\n' : ' '));
+        }
+    }
+
+    return 0;
+}
