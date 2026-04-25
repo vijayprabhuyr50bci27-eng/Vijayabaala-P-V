@@ -1,0 +1,55 @@
+
+// Comparison Functions
+
+int lexicographic_sort(const char* a, const char* b) {
+    return strcmp(a, b);
+}
+
+int lexicographic_sort_reverse(const char* a, const char* b) {
+    return strcmp(b, a);
+}
+
+// Helper to count distinct characters
+int count_distinct(const char* str) {
+    int distinct_count = 0;
+    int hash[26] = {0};
+    for (int i = 0; str[i] != '\0'; i++) {
+        int index = str[i] - 'a';
+        if (hash[index] == 0) {
+            hash[index] = 1;
+            distinct_count++;
+        }
+    }
+    return distinct_count;
+}
+
+int sort_by_number_of_distinct_characters(const char* a, const char* b) {
+    int res = count_distinct(a) - count_distinct(b);
+    if (res == 0) {
+        return lexicographic_sort(a, b);
+    }
+    return res;
+}
+
+int sort_by_length(const char* a, const char* b) {
+    int res = strlen(a) - strlen(b);
+    if (res == 0) {
+        return lexicographic_sort(a, b);
+    }
+    return res;
+}
+
+// Sorting Function Implementation
+void string_sort(const char **arr, const int cnt, int (*cmp_func)(const char* a, const char* b)) {
+    for (int i = 0; i < cnt - 1; i++) {
+        for (int j = i + 1; j < cnt; j++) {
+            // If the element at i should come after element at j based on cmp_func
+            if (cmp_func(arr[i], arr[j]) > 0) {
+                const char *temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+}
+
