@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX_BOOKS 100
+#define TITLE_LENGTH 100
+#define AUTHOR_LENGTH 100
+typedef struct
+{
+ char title[TITLE_LENGTH];
+ char author[AUTHOR_LENGTH];
+ int copies;
+}
+Book;
+void searchBook(Book books[], int n, char *title)
+{
+ for (int i = 0; i < n; i++)
+ {
+ if (strcmp(books[i].title, title) == 0)
+ {
+ printf("Book found:\n");
+ printf("Title: %s\n", books[i].title);
+ printf("Author: %s\n", books[i].author);
+ printf("Copies Available: %d\n", books[i].copies);
+ return;
+ }
+ }
+ printf("The book is not available.\n");
+}
+void borrowBook(Book books[], int n, char *title)
+{
+ for (int i = 0; i < n; i++) 
+ {
+ if (strcmp(books[i].title, title) == 0) 
+ {
+ if (books[i].copies > 0) {
+ books[i].copies--;
+ printf("Borrow successful. Copies Available: %d\n", books[i].copies);
+ } else {
+ printf("All copies are currently borrowed.\n");
+ }
+ return;
+ }
+ }
+ printf("The book is not available.\n");
+}
+int main() {
+ Book books[MAX_BOOKS];
+ int n;
+ printf("Enter the number of books: ");
+ scanf("%d", &n);
+ getchar(); 
+ for (int i = 0; i < n; i++) {
+ printf("Book %d:\n", i + 1);
+ printf("Title: ");
+ fgets(books[i].title, TITLE_LENGTH, stdin);
+ books[i].title[strcspn(books[i].title, "\n")] = 0; 
+ printf("Author: ");
+ fgets(books[i].author, AUTHOR_LENGTH, stdin);
+ books[i].author[strcspn(books[i].author, "\n")] = 0; 
+ printf("Copies: ");
+ scanf("%d", &books[i].copies);
+ getchar();
+ }
+ char searchTitle[TITLE_LENGTH];
+ printf("Enter the title of the book to search: ");
+ fgets(searchTitle, TITLE_LENGTH, stdin);
+ searchTitle[strcspn(searchTitle, "\n")] = 0; 
+ searchBook(books, n, searchTitle);
+ char borrowTitle[TITLE_LENGTH];
+ printf("Enter the title of the book to borrow: ");
+ fgets(borrowTitle, TITLE_LENGTH, stdin);
+ borrowTitle[strcspn(borrowTitle, "\n")] = 0; 
+ borrowBook(books, n, borrowTitle);
+ return 0;
+}
