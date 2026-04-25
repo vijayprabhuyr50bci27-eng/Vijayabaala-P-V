@@ -1,0 +1,29 @@
+#include <stdio.h>
+int findSecondLargest(int arr[], int n)
+{
+ int first, second;
+ first = second = -2147483648;
+ for (int i = 0; i < n; i++) 
+ {
+ if (arr[i] > first)
+ {
+ second = first;
+ first = arr[i];
+ } 
+ else if (arr[i] > second && arr[i] != first)
+ {
+ second = arr[i];
+ }
+ }
+ return second;
+}
+int main() 
+{
+ int arr1[] = {12, 35, 1, 10, 34, 1};
+ int n1 = sizeof(arr1) / sizeof(arr1[0]);
+ printf("Second Largest Element: %d\n", findSecondLargest(arr1, n1));
+ int arr2[] = {10, 5, 10};
+ int n2 = sizeof(arr2) / sizeof(arr2[0]);
+ printf("Second Largest Element: %d\n", findSecondLargest(arr2, n2));
+ return 0;
+}
