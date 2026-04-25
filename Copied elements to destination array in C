@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main() 
+{
+    int source[100], destination[100];
+    int n, i;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) 
+    {
+        scanf("%d", &source[i]);
+    }
+    int *srcPtr = source;
+    int *destPtr = destination;
+    for (i = 0; i < n; i++) 
+    {
+        *(destPtr + i) = *(srcPtr + i);
+    }
+    printf("Copied elements to destination array:\n");
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", destination[i]);
+    }
+    return 0;
+}
