@@ -1,0 +1,25 @@
+/*C program to find greatest among 10 numbers*/
+#include<stdio.h>
+int main() 
+{
+    int numbers[10];
+    int i = 0;
+    int greatest;
+    printf("Enter 10 numbers:\n");
+    while (i < 10)
+    {
+        scanf("%d", &numbers[i]);
+        i++;
+    }
+    greatest = numbers[0];
+    i = 1;
+    while (i < 10) 
+    {
+        if (numbers[i] > greatest) {
+            greatest = numbers[i];
+        }
+        i++;
+    }
+    printf("The greatest number is: %d\n", greatest);
+    return 0;
+}
