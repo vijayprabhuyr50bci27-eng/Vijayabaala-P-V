@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main() 
+{
+    float wc;
+    printf("Enter daily water consumption in litres\n");
+    scanf("%f",&wc);
+    if(wc<=500)
+    {
+        printf("Low water consumption\n");
+    }
+    else if(wc>501 && wc<=1500)
+    {
+        printf("Medium water consumption\n");
+    }
+    else if(wc>1500)
+    {
+        printf("High water consumption\n");
+    }
+    else
+    {
+        printf("Invalid input\n");
+    }
+    return 0;
+
+}
+
